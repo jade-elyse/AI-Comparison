@@ -133,6 +133,88 @@
   gap: 10px;
 }
 
+.taskControls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.remainingText {
+  margin: 0;
+  color: rgba(15, 23, 42, 0.7);
+  font-size: 13px;
+}
+
+.filterBar {
+  display: inline-flex;
+  gap: 6px;
+  padding: 6px;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  background: rgba(248, 250, 252, 0.9);
+  margin-bottom: 12px;
+}
+
+.filterButton {
+  border: 1px solid transparent;
+  background: transparent;
+  color: rgba(15, 23, 42, 0.8);
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  cursor: pointer;
+  transition:
+    background 140ms ease,
+    transform 140ms ease,
+    color 140ms ease,
+    box-shadow 140ms ease;
+}
+
+.filterButton:hover {
+  background: rgba(79, 70, 229, 0.08);
+  transform: translateY(-1px);
+}
+
+.filterButtonActive {
+  background: rgba(79, 70, 229, 0.12);
+  color: rgba(15, 23, 42, 0.92);
+  box-shadow: inset 0 0 0 1px rgba(79, 70, 229, 0.25);
+}
+
+.clearButton {
+  padding: 9px 10px;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  cursor: pointer;
+  color: rgba(15, 23, 42, 0.86);
+  transition:
+    transform 140ms ease,
+    background 140ms ease,
+    border-color 140ms ease,
+    color 140ms ease;
+}
+
+.clearButton:hover {
+  background: rgba(239, 68, 68, 0.08);
+  border-color: rgba(239, 68, 68, 0.3);
+  color: #b91c1c;
+  transform: translateY(-1px);
+}
+
+.clearButton:active {
+  transform: translateY(0px);
+}
+
+.clearButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+  transform: none;
+}
+
 .taskItem {
   display: flex;
   align-items: center;
@@ -229,6 +311,8 @@
 
 .addButton:focus-visible,
 .deleteButton:focus-visible,
+.clearButton:focus-visible,
+.filterButton:focus-visible,
 .taskCheckbox:focus-visible {
   outline: none;
   box-shadow: 0 0 0 4px var(--focus-ring);
@@ -239,7 +323,21 @@
     flex-direction: column;
   }
 
+  .taskControls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filterBar {
+    width: 100%;
+    justify-content: space-between;
+  }
+
   .deleteButton {
+    width: 100%;
+  }
+
+  .clearButton {
     width: 100%;
   }
 }
