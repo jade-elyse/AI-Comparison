@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "./components/Header";
 import TaskForm from "./components/TaskForm";
 import TaskList from "./components/TaskList";
@@ -7,10 +7,24 @@ import "./App.css";
 const FILTERS = ["All", "Active", "Completed"];
 
 function App() {
-  const [tasks, setTasks] = useState([
-    { id: 1, text: "Buy groceries", completed: false },
-    { id: 2, text: "Walk the dog", completed: true },
-  ]);
+  const [tasks, setTasks] = useState(() => {
+    try {
+      const saved = localStorage.getItem("tasklist-pro-tasks");
+      return saved
+        ? JSON.parse(saved)
+        : [
+            { id: 1, text: "Buy groceries", completed: false },
+            { id: 2, text: "Walk the dog", completed: true },
+          ];
+    } catch {
+      return [];
+    }
+  });
+
+  useEffect(() => {
+    localStorage.setItem("tasklist-pro-tasks", JSON.stringify(tasks));
+  }, [tasks]);
+
   const [filter, setFilter] = useState("All");
 
   const addTask = (text) => {
@@ -118,7 +132,8 @@ function App() {
           {tasks.length > 0 && (
             <div className="card-footer-bar">
               <span className="remaining-counter">
-                {remainingCount} {remainingCount === 1 ? "task" : "tasks"} remaining
+                {remainingCount} {remainingCount === 1 ? "task" : "tasks"}{" "}
+                remaining
               </span>
               {completedCount > 0 && (
                 <button className="clear-btn" onClick={clearCompleted}>
