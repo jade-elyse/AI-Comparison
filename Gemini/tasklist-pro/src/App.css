@@ -1,0 +1,11 @@
+.App {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background: #f4f4f4;
+  border-radius: 5px;
+}
+
+.container {
+  padding: 1rem;
+}
