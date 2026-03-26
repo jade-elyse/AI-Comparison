@@ -127,3 +127,90 @@
   background: var(--color-surface);
   letter-spacing: 0.01em;
 }
+
+/* ===========================
+   Filter Bar
+   =========================== */
+
+.filter-bar {
+  display: flex;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+}
+
+.filter-btn {
+  padding: 0.35rem 0.9rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-family: inherit;
+  border-radius: 999px;
+  border: 1.5px solid var(--color-border);
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition:
+    background var(--t-fast),
+    border-color var(--t-fast),
+    color var(--t-fast),
+    box-shadow var(--t-fast);
+}
+
+.filter-btn:hover {
+  border-color: var(--color-border-hover);
+  color: var(--color-primary);
+  background: var(--color-primary-light);
+}
+
+.filter-btn--active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.25);
+}
+
+.filter-btn--active:hover {
+  background: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+  color: #ffffff;
+}
+
+/* ===========================
+   Card Footer Bar
+   =========================== */
+
+.card-footer-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.remaining-counter {
+  font-size: 0.78rem;
+  color: var(--color-text-faint);
+  font-weight: 500;
+}
+
+.clear-btn {
+  font-size: 0.78rem;
+  font-weight: 600;
+  font-family: inherit;
+  color: var(--color-text-muted);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-sm);
+  transition:
+    color var(--t-fast),
+    background var(--t-fast);
+}
+
+.clear-btn:hover {
+  color: var(--color-danger);
+  background: var(--color-danger-bg);
+}

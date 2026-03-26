@@ -4,11 +4,14 @@ import TaskForm from "./components/TaskForm";
 import TaskList from "./components/TaskList";
 import "./App.css";
 
+const FILTERS = ["All", "Active", "Completed"];
+
 function App() {
   const [tasks, setTasks] = useState([
     { id: 1, text: "Buy groceries", completed: false },
     { id: 2, text: "Walk the dog", completed: true },
   ]);
+  const [filter, setFilter] = useState("All");
 
   const addTask = (text) => {
     const newTask = {
@@ -31,7 +34,18 @@ function App() {
     setTasks((prev) => prev.filter((task) => task.id !== id));
   };
 
+  const clearCompleted = () => {
+    setTasks((prev) => prev.filter((task) => !task.completed));
+  };
+
   const completedCount = tasks.filter((t) => t.completed).length;
+  const remainingCount = tasks.length - completedCount;
+
+  const filteredTasks = tasks.filter((task) => {
+    if (filter === "Active") return !task.completed;
+    if (filter === "Completed") return task.completed;
+    return true;
+  });
 
   return (
     <div className="app">
@@ -68,6 +82,22 @@ function App() {
             </div>
           )}
 
+          {/* Filter bar */}
+          {tasks.length > 0 && (
+            <div className="filter-bar" role="group" aria-label="Filter tasks">
+              {FILTERS.map((f) => (
+                <button
+                  key={f}
+                  className={`filter-btn${filter === f ? " filter-btn--active" : ""}`}
+                  onClick={() => setFilter(f)}
+                  aria-pressed={filter === f}
+                >
+                  {f}
+                </button>
+              ))}
+            </div>
+          )}
+
           {tasks.length === 0 ? (
             <div className="empty-state">
               <span className="empty-state-icon" aria-hidden="true">
@@ -77,10 +107,25 @@ function App() {
             </div>
           ) : (
             <TaskList
-              tasks={tasks}
+              tasks={filteredTasks}
+              filter={filter}
               onToggle={toggleTask}
               onDelete={deleteTask}
             />
+          )}
+
+          {/* Card footer bar */}
+          {tasks.length > 0 && (
+            <div className="card-footer-bar">
+              <span className="remaining-counter">
+                {remainingCount} {remainingCount === 1 ? "task" : "tasks"} remaining
+              </span>
+              {completedCount > 0 && (
+                <button className="clear-btn" onClick={clearCompleted}>
+                  Clear completed ({completedCount})
+                </button>
+              )}
+            </div>
           )}
         </div>
       </main>
