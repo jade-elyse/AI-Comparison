@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import Header from "./components/Header";
 import TaskForm from "./components/TaskForm";
@@ -8,6 +8,17 @@ import Footer from "./components/Footer";
 function App() {
   const [tasks, setTasks] = useState([]);
   const [filter, setFilter] = useState("all");
+
+  useEffect(() => {
+    const storedTasks = localStorage.getItem("tasks");
+    if (storedTasks) {
+      setTasks(JSON.parse(storedTasks));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   const addTask = (taskName) => {
     const newTask = {
@@ -21,8 +32,8 @@ function App() {
   const toggleTask = (taskId) => {
     setTasks(
       tasks.map((task) =>
-        task.id === taskId ? { ...task, completed: !task.completed } : task,
-      ),
+        task.id === taskId ? { ...task, completed: !task.completed } : task
+      )
     );
   };
 
