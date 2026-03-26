@@ -1,9 +1,20 @@
 import TaskItem from "./TaskItem";
 import "./TaskList.css";
 
-function TaskList({ tasks, onToggle, onDelete }) {
+function TaskList({ tasks, filter, onToggle, onDelete }) {
   const pending = tasks.filter((t) => !t.completed);
   const completed = tasks.filter((t) => t.completed);
+
+  if (tasks.length === 0) {
+    const messages = {
+      Active: "No active tasks — everything's done! 🎉",
+      Completed: "No completed tasks yet.",
+      All: "",
+    };
+    return (
+      <p className="task-list-empty">{messages[filter] || "No tasks here."}</p>
+    );
+  }
 
   return (
     <ul className="task-list" role="list">
