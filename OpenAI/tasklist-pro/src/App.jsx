@@ -1,14 +1,49 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import "./App.css";
+
+const TASKS_STORAGE_KEY = "tasklistpro.tasks.v1";
 
 function App() {
   const [newTaskText, setNewTaskText] = useState("");
   const [filter, setFilter] = useState("all");
-  const [tasks, setTasks] = useState(() => [
-    { id: crypto.randomUUID(), text: "Try TaskList Pro", completed: false },
-  ]);
+  const [tasks, setTasks] = useState(() => {
+    const fallback = [
+      { id: crypto.randomUUID(), text: "Try TaskList Pro", completed: false },
+    ];
+
+    try {
+      const raw = localStorage.getItem(TASKS_STORAGE_KEY);
+      if (!raw) return fallback;
+
+      const parsed = JSON.parse(raw);
+      if (!Array.isArray(parsed)) return fallback;
+
+      const sanitized = parsed
+        .filter(
+          (t) =>
+            t &&
+            typeof t === "object" &&
+            typeof t.id === "string" &&
+            typeof t.text === "string" &&
+            typeof t.completed === "boolean",
+        )
+        .map((t) => ({ id: t.id, text: t.text, completed: t.completed }));
+
+      return sanitized.length > 0 ? sanitized : fallback;
+    } catch {
+      return fallback;
+    }
+  });
 
   const isAddDisabled = newTaskText.trim().length === 0;
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(TASKS_STORAGE_KEY, JSON.stringify(tasks));
+    } catch {
+      // Ignore write errors (e.g., storage full, blocked)
+    }
+  }, [tasks]);
 
   const remainingCount = useMemo(
     () => tasks.filter((t) => !t.completed).length,
