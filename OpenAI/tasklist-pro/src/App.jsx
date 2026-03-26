@@ -66,7 +66,11 @@ function App() {
               placeholder="What do you need to do?"
               autoComplete="off"
             />
-            <button className="addButton" type="submit">
+            <button
+              className="addButton"
+              type="submit"
+              disabled={isAddDisabled}
+            >
               Add Task
             </button>
           </form>
