@@ -173,10 +173,8 @@
 .taskText {
   color: var(--text);
   font-size: 14px;
-  word-break: break-word;
   line-height: 1.35;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  overflow-wrap: anywhere;
 }
 
 .taskItemDone .taskText {
