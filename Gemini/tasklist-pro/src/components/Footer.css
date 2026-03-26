@@ -1,0 +1,40 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  border-top: 1px solid #f0f0f0;
+  font-size: 0.9rem;
+  color: #888;
+}
+
+.filters button {
+  background: none;
+  border: 1px solid transparent;
+  margin: 0 0.25rem;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: border-color 0.2s;
+}
+
+.filters button:hover {
+  border-color: #ddd;
+}
+
+.filters button.active {
+  border-color: #6e8efb;
+  color: #6e8efb;
+}
+
+.clear-completed {
+  background: none;
+  border: none;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.clear-completed:hover {
+  color: #ff4d4f;
+}
