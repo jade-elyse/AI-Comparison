@@ -1,0 +1,140 @@
+/* ===========================
+   Task Item
+   =========================== */
+
+.task-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.75rem 0.9rem;
+  border-radius: 8px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  transition:
+    background 0.15s,
+    border-color 0.15s,
+    opacity 0.2s;
+}
+
+.task-item:hover {
+  background: #f3f4f6;
+  border-color: #d1d5db;
+}
+
+.task-item--completed {
+  opacity: 0.6;
+}
+
+/* ===========================
+   Label & Checkbox
+   =========================== */
+
+.task-item-label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Hide the native checkbox visually but keep it accessible */
+.task-checkbox {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+/* Custom checkbox box */
+.task-checkbox-custom {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  border: 2px solid #c4b5fd;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background 0.15s,
+    border-color 0.15s;
+  position: relative;
+}
+
+/* Checked state: filled */
+.task-checkbox:checked + .task-checkbox-custom {
+  background: #4f46e5;
+  border-color: #4f46e5;
+}
+
+/* Checkmark via pseudo-element */
+.task-checkbox:checked + .task-checkbox-custom::after {
+  content: "";
+  display: block;
+  width: 5px;
+  height: 9px;
+  border: 2px solid #ffffff;
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg) translate(-1px, -1px);
+}
+
+/* Focus ring for keyboard navigation */
+.task-checkbox:focus-visible + .task-checkbox-custom {
+  outline: 3px solid rgba(79, 70, 229, 0.4);
+  outline-offset: 2px;
+}
+
+/* ===========================
+   Task Text
+   =========================== */
+
+.task-text {
+  font-size: 0.95rem;
+  color: #1a1a2e;
+  word-break: break-word;
+  transition:
+    color 0.15s,
+    text-decoration 0.15s;
+}
+
+.task-item--completed .task-text {
+  text-decoration: line-through;
+  color: #9ca3af;
+}
+
+/* ===========================
+   Delete Button
+   =========================== */
+
+.delete-btn {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  color: #d1d5db;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background 0.15s,
+    color 0.15s;
+}
+
+.delete-btn:hover {
+  background: #fee2e2;
+  color: #ef4444;
+}
+
+.delete-btn:focus-visible {
+  outline: 3px solid rgba(239, 68, 68, 0.4);
+  outline-offset: 2px;
+}
