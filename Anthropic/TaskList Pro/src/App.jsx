@@ -50,10 +50,31 @@ function App() {
             </span>
           </div>
 
+          {tasks.length > 0 && (
+            <div
+              className="progress-bar-wrap"
+              role="progressbar"
+              aria-valuenow={Math.round((completedCount / tasks.length) * 100)}
+              aria-valuemin={0}
+              aria-valuemax={100}
+              aria-label={`${Math.round((completedCount / tasks.length) * 100)}% complete`}
+            >
+              <div
+                className="progress-bar-fill"
+                style={{
+                  width: `${Math.round((completedCount / tasks.length) * 100)}%`,
+                }}
+              />
+            </div>
+          )}
+
           {tasks.length === 0 ? (
-            <p className="empty-state">
-              No tasks yet — add one above to get started!
-            </p>
+            <div className="empty-state">
+              <span className="empty-state-icon" aria-hidden="true">
+                📋
+              </span>
+              <p>No tasks yet — add one above to get started!</p>
+            </div>
           ) : (
             <TaskList
               tasks={tasks}
