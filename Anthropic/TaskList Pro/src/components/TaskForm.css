@@ -4,44 +4,51 @@
 
 .task-form-label {
   display: block;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #374151;
-  margin-bottom: 0.6rem;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  margin-bottom: 0.7rem;
 }
 
 .task-form-row {
   display: flex;
-  gap: 0.75rem;
+  gap: 0.65rem;
 }
 
 .task-input {
   flex: 1;
-  padding: 0.65rem 0.9rem;
-  font-size: 0.95rem;
+  padding: 0.78rem 1rem;
+  font-size: 0.94rem;
   font-family: inherit;
-  border: 2px solid #e5e7eb;
-  border-radius: 8px;
-  color: #1a1a2e;
-  background: #f9fafb;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text);
+  background: #fafafa;
   outline: none;
   transition:
-    border-color 0.2s,
-    box-shadow 0.2s;
+    border-color var(--t-fast),
+    box-shadow var(--t-fast),
+    background var(--t-fast);
 }
 
 .task-input::placeholder {
-  color: #9ca3af;
+  color: var(--color-text-faint);
+}
+
+.task-input:hover {
+  border-color: #d1d5db;
 }
 
 .task-input:focus {
-  border-color: #4f46e5;
-  background: #ffffff;
-  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+  border-color: var(--color-primary);
+  background: var(--color-surface);
+  box-shadow: 0 0 0 3px var(--color-primary-glow);
 }
 
 .task-input--error {
-  border-color: #ef4444;
+  border-color: var(--color-danger);
 }
 
 .task-input--error:focus {
@@ -49,29 +56,43 @@
 }
 
 .add-btn {
-  padding: 0.65rem 1.25rem;
-  font-size: 0.9rem;
-  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.78rem 1.35rem;
+  font-size: 0.88rem;
+  font-weight: 700;
   font-family: inherit;
   color: #ffffff;
-  background: #4f46e5;
+  background: linear-gradient(135deg, var(--color-primary) 0%, #7c3aed 100%);
   border: none;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   cursor: pointer;
   white-space: nowrap;
+  letter-spacing: 0.01em;
+  box-shadow: 0 2px 10px rgba(79, 70, 229, 0.3);
   transition:
-    background 0.2s,
-    transform 0.1s,
-    box-shadow 0.2s;
+    filter var(--t-fast),
+    transform var(--t-fast),
+    box-shadow var(--t-fast);
 }
 
 .add-btn:hover {
-  background: #4338ca;
-  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.35);
+  filter: brightness(1.1);
+  box-shadow: 0 4px 18px rgba(79, 70, 229, 0.45);
+  transform: translateY(-1px);
 }
 
 .add-btn:active {
-  transform: scale(0.97);
+  transform: scale(0.97) translateY(0);
+  box-shadow: 0 1px 6px rgba(79, 70, 229, 0.25);
+}
+
+.add-btn-icon {
+  font-size: 1.15rem;
+  font-weight: 300;
+  line-height: 1;
+  margin-top: -1px;
 }
 
 /* ===========================
@@ -80,7 +101,10 @@
 
 .task-form-error {
   margin-top: 0.5rem;
-  font-size: 0.82rem;
-  color: #ef4444;
+  font-size: 0.8rem;
+  color: var(--color-danger);
   font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
 }

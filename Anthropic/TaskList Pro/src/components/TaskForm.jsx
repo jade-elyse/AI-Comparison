@@ -42,6 +42,9 @@ function TaskForm({ onAdd }) {
           aria-invalid={!!error}
         />
         <button className="add-btn" type="submit">
+          <span className="add-btn-icon" aria-hidden="true">
+            +
+          </span>
           Add Task
         </button>
       </div>
