@@ -1,11 +1,13 @@
 .App {
-  max-width: 600px;
-  margin: 2rem auto;
-  padding: 1rem;
-  background: #f4f4f4;
-  border-radius: 5px;
+  width: 100%;
+  max-width: 550px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
 
 .container {
-  padding: 1rem;
+  padding: 1.5rem 2rem;
 }
